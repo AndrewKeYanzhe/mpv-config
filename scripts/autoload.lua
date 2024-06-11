@@ -34,7 +34,7 @@ local utils = require 'mp.utils'
 
 o = {
     disabled = false,
-    images = false,
+    images = true,
     videos = true,
     audio = true,
     additional_image_exts = "",
@@ -83,10 +83,12 @@ EXTENSIONS_AUDIO = Set {
     'ogm', 'opus', 'wav', 'wma'
 }
 
-EXTENSIONS_IMAGES = Set {
-    'avif', 'bmp', 'gif', 'j2k', 'jp2', 'jpeg', 'jpg', 'jxl', 'png',
-    'svg', 'tga', 'tif', 'tiff', 'webp'
-}
+-- EXTENSIONS_IMAGES = Set {
+--     'avif', 'bmp', 'gif', 'j2k', 'jp2', 'jpeg', 'jpg', 'jxl', 'png',
+--     'svg', 'tga', 'tif', 'tiff', 'webp'
+-- }
+
+EXTENSIONS_IMAGES = Set {}
 
 function split_option_exts(video, audio, image)
     if video then o.additional_video_exts = Split(o.additional_video_exts) end
