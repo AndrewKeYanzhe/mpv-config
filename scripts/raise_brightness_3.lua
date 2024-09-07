@@ -55,4 +55,6 @@ local function check_focus()
 end
 
 -- Set a timer to check focus periodically
-mp.add_periodic_timer(0.5, check_focus)
+
+-- mp.add_periodic_timer(0.5, check_focus)
+-- this causes mpv to crash after skipping through a few files in playlist. stutter might also be increased.
