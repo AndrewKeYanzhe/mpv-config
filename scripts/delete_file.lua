@@ -52,12 +52,13 @@ end
 function contains_item(l, i)
    for k, v in pairs(l) do
       if v == i then
-         mp.osd_message("undeleting current file")
+         mp.osd_message("current file is removed from deletion list")
          l[k] = nil
          return true
       end
    end
-   mp.osd_message("deleting current file")
+   mp.osd_message("IMPORTANT: Current file is marked for deletion!"
+)
    return false
 end
 
