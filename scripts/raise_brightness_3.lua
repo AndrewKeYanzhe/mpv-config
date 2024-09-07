@@ -1,5 +1,6 @@
 local previous_brightness
 local brightness_raised = false
+local file_loaded = false
 
 -- Function to get current brightness
 local function get_current_brightness()
@@ -16,14 +17,13 @@ end
 
 -- Store the current brightness when MPV starts
 mp.register_event("start-file", function()
+    file_loaded = true
     if not brightness_raised then
         -- Store the current brightness
         -- previous_brightness = get_current_brightness() or 70
         previous_brightness = get_current_brightness()
-
-        -- Set the brightness to 100
         set_brightness(100)
-        brightness_raised = true  -- Set the flag to true after raising brightness
+        brightness_raised = true
     end
 end)
 
@@ -31,6 +31,28 @@ end)
 mp.register_event("shutdown", function()
     if previous_brightness then
         set_brightness(previous_brightness)
-        brightness_raised = false  -- Reset the flag when quitting
+        brightness_raised = false
     end
 end)
+
+-- Function to check focus and adjust brightness
+local function check_focus()
+    if file_loaded then
+        if mp.get_property_native('focused') then
+            -- MPV is focused; raise brightness
+            if not brightness_raised then
+                set_brightness(100)
+                brightness_raised = true
+            end
+        else
+            -- MPV is not focused; restore previous brightness
+            if brightness_raised then
+                set_brightness(previous_brightness)
+                brightness_raised = false
+            end
+        end
+    end
+end
+
+-- Set a timer to check focus periodically
+mp.add_periodic_timer(0.5, check_focus)
