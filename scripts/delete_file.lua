@@ -11,8 +11,7 @@
 -- TODO: add warning ***
 -- TODO: move files instead of delete
 -- 2. TODO print delete list on multiple lines
--- 3. after deletion, if u use shift > < to cycle forward and back (autoload lua script), mpv crashes
--- TODO: reset autoload list after delete? *******
+
 
 local utils = require "mp.utils"
 
@@ -112,7 +111,8 @@ function delete()
       end
    end
 
-   del_list = {}
+   -- del_list = {}
+   mp.command("script-reload")
 end
 
 function showList()
