@@ -1,6 +1,11 @@
 -- original code obtained from https://github.com/zenyd/mpv-scripts/blob/master/delete_file.lua
 
 
+-- ctrl + DEL	mark/unmark file to be deleted
+-- alt + DEL	show the list of files marked for deletion
+-- ctrl + shift + DEL	clear the list of marked files
+
+
 local utils = require "mp.utils"
 
 require 'mp.options'
@@ -20,6 +25,13 @@ read_options(options)
 
 
 del_list = {}
+
+
+function move_to_recycle_bin(path)
+   local command = string.format([[powershell -command "& {Add-Type -AssemblyName 'Microsoft.VisualBasic'; [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile('%s', 'OnlyErrorDialogs', 'SendToRecycleBin') }"]], path)
+   os.execute(command)
+end
+
 
 function createDirectory()
    if not utils.file_info(options.DeletedFilesPath) then
@@ -86,7 +98,8 @@ function delete()
          end
       else
          print("deleting: "..v)
-         os.remove(v)
+         -- os.remove(v)
+         move_to_recycle_bin(v)
       end
    end
 end
