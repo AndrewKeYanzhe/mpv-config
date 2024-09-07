@@ -102,6 +102,8 @@ function delete()
          move_to_recycle_bin(v)
       end
    end
+
+   del_list = {}
 end
 
 function showList()
@@ -134,7 +136,17 @@ function list_marks()
    end
 end
 
-mp.add_key_binding("ctrl+DEL", "delete_file", mark_delete)
-mp.add_key_binding("alt+DEL", "list_marks", list_marks)
-mp.add_key_binding("ctrl+shift+DEL", "clear_list", function() mp.osd_message("Undelete all"); del_list = {}; end)
-mp.register_event("shutdown", delete)
+-- mp.add_key_binding("ctrl+DEL", "delete_file", mark_delete)
+-- mp.add_key_binding("alt+DEL", "list_marks", list_marks)
+-- mp.add_key_binding("ctrl+shift+DEL", "clear_list", function() mp.osd_message("Undelete all"); del_list = {}; end)
+-- mp.register_event("shutdown", delete)
+
+
+-- https://github.com/mpv-player/mpv/blob/master/etc/input.conf
+
+mp.remove_key_binding("BS")
+mp.add_key_binding("BS", "delete_file", mark_delete)
+mp.add_key_binding("alt+BS", "list_marks", list_marks)
+mp.add_key_binding("alt+shift+BS", "clear_list", function() mp.osd_message("Undelete all"); del_list = {}; end)
+mp.add_key_binding("ctrl+BS", delete)
+
