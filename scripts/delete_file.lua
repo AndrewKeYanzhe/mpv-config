@@ -6,6 +6,14 @@
 -- ctrl + shift + DEL	clear the list of marked files
 
 
+-- bugs and TODOs. * mean priority
+-- 1. on exfat, windows recycle bin doesnt work. this script automatically permanently deletes instead of send to recycle bin
+-- TODO: add warning ***
+-- TODO: move files instead of delete
+-- 2. TODO print delete list on multiple lines
+-- 3. after deletion, if u use shift > < to cycle forward and back (autoload lua script), mpv crashes
+-- TODO: reset autoload list after delete? *******
+
 local utils = require "mp.utils"
 
 require 'mp.options'
