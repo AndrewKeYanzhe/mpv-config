@@ -131,7 +131,7 @@ function delete()
       end
    end
 
-   -- del_list = {}
+   del_list = {}
    mp.command("script-reload")
 end
 
