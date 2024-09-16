@@ -175,9 +175,13 @@ end
 
 mp.remove_key_binding("BS")
 mp.add_key_binding("BS", "delete_file", mark_delete)
+
+
+--alt refers to the option key on macOS
 mp.add_key_binding("alt+BS", "list_marks", list_marks)
 mp.add_key_binding("alt+shift+BS", "clear_list", function() mp.osd_message("Undelete all"); del_list = {}; end)
 
--- this refers to the control key on macOS
-mp.add_key_binding("ctrl+BS", delete) 
+-- ctrl refers to the control key on macOS
+-- Meta refers to the command key on macOS
+mp.add_key_binding("Meta+BS", delete) 
 
