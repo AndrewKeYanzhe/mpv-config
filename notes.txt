@@ -1,0 +1,2 @@
+--version
+/Users/kakuakiraniji/Downloads/"mpv arm.app/Contents/MacOS/mpv" --version
