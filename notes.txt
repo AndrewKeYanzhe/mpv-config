@@ -1,2 +1,1 @@
---version
-/Users/kakuakiraniji/Downloads/"mpv arm.app/Contents/MacOS/mpv" --version
+/Users/andrewke/Downloads/mpv\ 30\ sep.app/Contents/MacOS/mpv --version 
